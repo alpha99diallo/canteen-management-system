@@ -54,7 +54,6 @@ Class User {
         } else {
             return 'Wrong username or email';
         }
-
     }
 
     //Check if user is logged in

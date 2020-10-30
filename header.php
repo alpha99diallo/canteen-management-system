@@ -1,5 +1,7 @@
 <?php
   session_start();
+  // unset($_SESSION['cart']);
+
  ?>
 
 <header id="pb-navbar" class="top-navbar">
@@ -27,14 +29,18 @@
                 ';
               } else {
                 echo '
-                  <li class="nav-link">
-                  <span style="font-family: snellroundhandw01-scrip,cursive;color: #181818;">Hello</span>
-                  ,&nbsp;<span style="font-family: snellroundhandw01-scrip,cursive;color: #900C3F;"> '.$_SESSION['userName']."</span>&nbsp;&nbsp;
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="" id="dropdown-a" data-toggle="dropdown">
+                    <span style="font-family: snellroundhandw01-scrip,cursive;color: #181818;">Hello</span>
+                    ,&nbsp;<span style="font-family: snellroundhandw01-scrip,cursive;color: #900C3F;"> '.$_SESSION['userName']."
+                    </span>
+                    </a>
+                    <div class='dropdown-menu' aria-labelledby='dropdown-a'>
+      								<a class='dropdown-item' href='orders.php'>Orders</a>
+      								<a class='dropdown-item' href='includes/logout.inc.php?logout'>Log out</a>
+      							</div>
                   </li>
                   ";
-                echo '
-                  <li class="nav-item"><a class="nav-link" href="includes/logout.inc.php?logout">Log out</a></li>
-                ';
               }
             ?>
         </ul>

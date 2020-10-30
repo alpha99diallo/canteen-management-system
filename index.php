@@ -3,12 +3,15 @@
 	require_once('classes/categories.class.php');
 	require_once('classes/dishes.class.php');
 
+	// error_reporting(E_ALL & ~E_NOTICE);
+
 	// creation of object
 	$categories = new Categories($conn);
 	$dishes = new Dishes($conn);
 
 	$dataFetched = $categories->fetchCategories();
 	$fetchingAllDishes = $dishes->fetchAllDishes();
+	$total=0;
 
 
  ?>
@@ -105,21 +108,6 @@
 	</div>
 	<!-- End About -->
 
-	<!-- Start QT -->
-	<div class="qt-box qt-background">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-8 ml-auto mr-auto text-center">
-					<p class="lead ">
-						" If you're not the one cooking, stay out of the way and compliment the chef. "
-					</p>
-					<span class="lead">Michael Strahan</span>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- End QT -->
-
 	<!-- Start Menu -->
 	<div id="section-menu" class="menu-box">
 		<div class="container">
@@ -162,7 +150,7 @@
 													<p>'.$fetchingAllDishes[$i]['dishDescription'].'</p>
 													<div class="remember-checkbox d-flex align-items-center justify-content-between">
 														<h5> $'.$fetchingAllDishes[$i]['dishPrice'].'</h5>
-														<a class="btn-cart btn btn-primary btn-animated mx-3" style="background-color:#900C3F;color: white;" name="addcart">
+														<a class="btn-cart btn btn-primary btn-animated mx-3" style="background-color:#900C3F;color: white;" href="includes/addToCart.inc.php?id='.$fetchingAllDishes[$i]['dishId'].'&quantity=1&name='.$fetchingAllDishes[$i]['dishName'].'&price='.$fetchingAllDishes[$i]['dishPrice'].'">
 															<i class="fa fa-shopping-cart"></i>
 														</a>
 													</div>
@@ -221,19 +209,35 @@
 									<tr>
 										<th>Product</th>
 										<th>Q</th>
-										<th>Price</th>
+										<th>Price(rs)</th>
 									</tr>
 								</thead>
 								<tbody>
+									<?php
+									foreach($_SESSION["cart"] as $product){
+										$dishQuantity=$product['quantity'];
+                    $dishId = $product['pid'];
+										$dishName = $product['name'];
+										$dishPrice = $product['price'];
+										$total += ((float)$dishQuantity*(float)$dishPrice);
 
+										echo '
+										<tr>
+											<td>'.$dishName.'</td>
+											<td>'.$dishQuantity.'</td>
+											<td> '.$dishPrice.'</td>
+										</tr>
+										';
+									}
+									 ?>
 								</tbody>
 								<tfoot>
 									<tr>
-										<td>Total: 0</td>
+										<th>Total(rs): <?php echo $total; ?></th>
 									</tr>
 								</tfoot>
 							</table>
-							<a style="background-color: #900C3F;color: white;" class="btn btn-primary btn-block">Order</a>
+							<a style="background-color: #900C3F;color: white;" href="includes/deleteCart.inc.php?id=4" class="btn btn-primary btn-block">Order</a>
 						</div>
 					</div>
 				</div>
