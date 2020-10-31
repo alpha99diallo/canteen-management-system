@@ -1,3 +1,36 @@
+<?php
+  session_start();
+
+  require_once('../includes/dbh.inc.php');
+  require_once('../classes/admin.class.php');
+
+  // creation of the user object
+  $user = new Admin($conn);
+
+  //if already logged in, redirect to home page
+  if ($user->isLoggedIn())
+  {
+    $user->redirect('admin.php');
+  }
+
+  //When login button pressed, login
+  if (isset($_POST['admin-login']))
+  {
+    $email = $_POST['uname'];
+    $pass = $_POST['pwd'];
+    $login = $user->login($email, $pass);
+
+    if ($login === true)
+    {
+        $user->redirect('admin.php?signin=success');
+    }
+    else
+    {
+        echo $login;
+    }
+  }
+
+ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -53,20 +86,24 @@ span.psw {
 </head>
 <body>
 
-  <div class="container">
-    <h2>Admin Login</h2>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="container" style="width: 40%;">
+        <h2>Admin Login</h2>
 
-    <form action="/action_page.php" method="post">
-      <div class="container">
-        <label for="uname"><b>Username</b></label>
-        <input type="text" placeholder="Enter Username" name="uname" required>
+        <form method="post">
+          <div class="container">
+            <label for="uname"><b>Username</b></label>
+            <input type="text" placeholder="Enter Username" name="uname" required>
 
-        <label for="psw"><b>Password</b></label>
-        <input type="password" placeholder="Enter Password" name="psw" required>
+            <label for="psw"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="pwd" required>
 
-        <button type="submit">Login</button>
+            <button type="submit" name="admin-login">Login</button>
+          </div>
+        </form>
       </div>
-    </form>
+    </div>
   </div>
 
 </body>

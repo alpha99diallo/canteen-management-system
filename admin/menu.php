@@ -2,7 +2,17 @@
   session_start();
 
   require_once('../includes/dbh.inc.php');
-  require_once('../classes/user.class.php');
+  require_once('../classes/dishes.class.php');
+
+  if(!isset($_SESSION['adminLoginStatus'])) {
+    header('Location: login.php');
+  }
+
+  $dishes = new Dishes($conn);
+
+  $listMenuItems = $dishes->fetchAllDishes();
+
+  // TODO: implement add items and delete items
 
  ?>
 
@@ -40,13 +50,13 @@
 </head>
 
 <body>
-  <?php include 'header.php' ?>
+  <?php include 'includes/header.inc.php' ?>
 
-  <div class="all-page-title page-breadcrumb" style="background: #181818; padding:120px;">
+  <div class="all-page-title page-breadcrumb" style="background: grey; padding:120px;">
 		<div class="container text-center">
 			<div class="row">
 				<div class="col-lg-12">
-					<h1>Menu</h1>
+					<h1>Menu(<?php echo count($listMenuItems); ?>)</h1>
 				</div>
 			</div>
 		</div>
@@ -56,7 +66,7 @@
     <div class="remember-checkbox d-flex align-items-center justify-content-between">
       <div class="checkbox">
       </div>
-      <a class="btn-cart btn btn-primary btn-animated mx-3" style="background-color:#900C3F;color: white;" name="addcart">
+      <a class="btn-cart btn btn-primary btn-animated mx-3" data-toggle="modal" href="#exampleModalCenter" style="background-color:#900C3F;color: white;" name="addcart">
         <i class="fa fa-shopping-cart"></i>
         <p>Add Items</p>
       </a>
@@ -74,12 +84,34 @@
                   <th scope="col">#id</th>
                   <th scope="col">Name</th>
                   <th scope="col">Category</th>
-                  <th scope="col">Price</th>
+                  <th scope="col">Price(Rs)</th>
                   <th scope="col">Availability</th>
+                  <th scope="col">Date Added</th>
+                  <th scope="col">Action</th>
                 </tr>
               </thead>
               <tbody>
-
+                <?php
+                  for($i = 0; $i < count($listMenuItems); $i++) {
+                    $id = $listMenuItems[$i]["dishId"];
+                    $dishName = $listMenuItems[$i]["dishName"];
+                    $dishCategory = $listMenuItems[$i]["dishCategory"];
+                    $dishPrice = $listMenuItems[$i]["dishPrice"];
+                    $dishAvailable = $listMenuItems[$i]["dishAvailability"];
+                    $dateAdded = $listMenuItems[$i]["dishDateAdded"];
+                    echo '
+                      <tr>
+                        <td>'.$id.'</td>
+                        <td>'.$dishName.'</td>
+                        <td>'.$dishCategory.'</td>
+                        <td>'.$dishPrice.'</td>
+                        <td>'.$dishAvailable.'</td>
+                        <td>'.$dateAdded.'</td>
+                        <td><a href="">delete</a></td>
+                      </tr>
+                    ';
+                  }
+                 ?>
               </tbody>
             </table>
           </div>
@@ -87,6 +119,9 @@
       </div>
     </div>
   </section>
+
+  <?php include 'includes/footer.inc.php';  ?>
+  <?php include 'includes/addItems.inc.php'; ?>
 
 </body>
 </html>

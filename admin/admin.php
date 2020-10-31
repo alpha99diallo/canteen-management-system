@@ -4,6 +4,14 @@
   require_once('../includes/dbh.inc.php');
   require_once('../classes/user.class.php');
 
+  if(!isset($_SESSION['adminLoginStatus'])) {
+    header('Location: login.php');
+  }
+
+  $user = new User($conn);
+
+  $listUsers = $user->displayUsers();
+
  ?>
 
 
@@ -40,13 +48,13 @@
 </head>
 
 <body>
-  <?php include 'header.php' ?>
+  <?php include 'includes/header.inc.php' ?>
 
-  <div class="all-page-title page-breadcrumb" style="background: #181818;">
+  <div class="all-page-title page-breadcrumb" style="background: grey;padding:120px;">
 		<div class="container text-center">
 			<div class="row">
 				<div class="col-lg-12">
-					<h1>Customer</h1>
+					<h1>Customer(<?php echo count($listUsers); ?>)</h1>
 				</div>
 			</div>
 		</div>
@@ -63,11 +71,23 @@
                   <th scope="col">#id</th>
                   <th scope="col">Name</th>
                   <th scope="col">Email</th>
-                  <th scope="col">NA</th>
                 </tr>
               </thead>
               <tbody>
-
+                <?php
+                  for($i = 0; $i < count($listUsers); $i++) {
+                    $id = $listUsers[$i]["userId"];
+                    $name = $listUsers[$i]["userName"];
+                    $email = $listUsers[$i]["userEmail"];
+                    echo '
+                      <tr>
+                        <td>'.$id.'</td>
+                        <td>'.$name.'</td>
+                        <td>'.$email.'</td>
+                      </tr>
+                    ';
+                  }
+                 ?>
               </tbody>
             </table>
           </div>
@@ -75,6 +95,6 @@
       </div>
     </div>
   </section>
-
+  <?php include 'includes/footer.inc.php' ?>
 </body>
 </html>

@@ -1,6 +1,6 @@
 <?php
 
-Class User {
+Class Admin {
 
     private $db;
 
@@ -30,7 +30,7 @@ Class User {
     public function login($user, $pass) {
 
         //Query database for info based on username or email
-        $stmt = $this->db->prepare("SELECT userName, userEmail, userPassword FROM users WHERE userName = ? OR userEmail = ?");
+        $stmt = $this->db->prepare("SELECT adminName, adminEmail, password FROM admin WHERE adminName = ? OR adminEmail = ?");
         $stmt->bind_param("ss", $user, $user);
         $stmt->execute();
         $stmt->store_result();
@@ -41,10 +41,10 @@ Class User {
             $result = $stmt->fetch();
 
             //if password matches setup session, else return error
-            if (password_verify($pass, $passHash)) {
-                $_SESSION['userName'] = $uname;
-                $_SESSION['userEmail'] = $email;
-                $_SESSION['userLoginStatus'] = 1;
+            if ($pass === $passHash) {
+                $_SESSION['adminName'] = $uname;
+                $_SESSION['adminEmail'] = $email;
+                $_SESSION['adminLoginStatus'] = 1;
 
                 return true;
             } else {
@@ -60,24 +60,12 @@ Class User {
     public function isLoggedIn() {
 
         //Return true if session has been set, false if it hasn't
-        if(isset($_SESSION['userLoginStatus'])) {
+        if(isset($_SESSION['adminLoginStatus'])) {
             return true;
         } else {
             return false;
         }
 
-    }
-
-    //To display users
-    public function displayUsers()
-    {
-      $arrayResult = array();
-      $stmt = "SELECT * FROM users;";
-      $result = mysqli_query($this->db,$stmt);
-      while ($row = mysqli_fetch_assoc($result)) {
-        $array[] = $row;
-      }
-      return $array;
     }
 
     //Redirect to a different page

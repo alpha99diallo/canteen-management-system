@@ -22,6 +22,8 @@ CREATE TABLE IF NOT EXISTS `dishes` (
   `dishCategory` int(11) NOT NULL,
   `dishDateAdded` date NOT NULL,
   `dishAvailability` boolean NOT NULL,
+  -- `today_special` boolean not null
+  -- `dayAvailable` array not null
   FOREIGN KEY(dishCategory) REFERENCES categories(catId)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

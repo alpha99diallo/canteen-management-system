@@ -50,7 +50,13 @@
 
     public function displayOrders()
     {
-      // TODO: display orders
+      $arrayResult = array();
+      $stmt = "SELECT * FROM orders;";
+      $result = mysqli_query($this->db,$stmt);
+      while ($row = mysqli_fetch_assoc($result)) {
+        $array[] = $row;
+      }
+      return $array;
     }
 
 
