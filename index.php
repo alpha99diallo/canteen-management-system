@@ -60,8 +60,9 @@
 					<div class="row">
 						<div class="col-md-12">
 							<h1 class="m-b-20"><strong>Welcome To <br> Alpha's Canteen</strong></h1>
-							<p class="m-b-40">See how your users experience your website in realtime or view <br>
-								trends to see any changes in performance over time.</p>
+							<p class="m-b-40">
+								See and enjoy the best dishes all week long.
+							</p>
 						</div>
 					</div>
 				</div>
@@ -72,8 +73,9 @@
 					<div class="row">
 						<div class="col-md-12">
 							<h1 class="m-b-20"><strong>Welcome To <br> Alpha's Canteen</strong></h1>
-							<p class="m-b-40">See how your users experience your website in realtime or view <br>
-								trends to see any changes in performance over time.</p>
+							<p class="m-b-40">
+								See and enjoy the best dishes all week long.
+							</p>
 						</div>
 					</div>
 				</div>
@@ -93,10 +95,9 @@
 				<div class="col-lg-6 col-md-6 col-sm-12 text-center">
 					<div class="inner-column">
 						<h1>Welcome To <span>Alpha's Canteen</span></h1>
-						<h4>Little Story</h4>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque auctor suscipit feugiat. Ut at pellentesque ante, sed convallis arcu. Nullam facilisis, eros in eleifend luctus, odio ante sodales augue, eget lacinia lectus erat et
-							sem. </p>
-						<p>Sed semper orci sit amet porta placerat. Etiam quis finibus eros. Sed aliquam metus lorem, a pellentesque tellus pretium a. Nulla placerat elit in justo vestibulum, et maximus sem pulvinar.</p>
+						<p>You can find in alpha's canteen all the best dishes all around the
+						world from the continent of America to the coninent of Australia / oceania
+					 	going through the amazing continents of Asia and Africa.</p>
 					</div>
 				</div>
 				<div class="col-lg-6 col-md-6 col-sm-12">
