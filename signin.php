@@ -14,6 +14,7 @@
   }
 
   //When login button pressed, login
+  $data;
   if (isset($_POST['login-submit']))
   {
     $email = $_POST['email'];
@@ -26,7 +27,7 @@
     }
     else
     {
-        echo $login;
+        $data = $login;
     }
   }
 
@@ -46,9 +47,6 @@
 
 	<!-- Site Metas -->
 	<title>Sign In | Canteen Management System</title>
-	<meta name="keywords" content="">
-	<meta name="description" content="">
-	<meta name="author" content="">
 
 	<!-- Site Icons -->
 	<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
@@ -106,12 +104,10 @@
   <div class="container">
     <div class="row align-items-center">
       <div class="col-lg-7 col-12" style="padding: 2em;">
-        <h2>New customer?</h2>
-        <caption>Create an account with us and you'll be able to:</caption>
+        <h2>New user?</h2>
+        <caption>Create an account and you'll be able to:</caption>
         <ul >
-          <li>Check out faster</li>
-          <li>Save multiple shipping addresses</li>
-          <li>Access your order history</li>
+          <li>Check out faster and easier</li>
         </ul>
         <br>
         <a href="signup.php" style="background-color: #900C3F;width: 50%;" class="btn btn-primary btn-block">Create account</a>
@@ -121,30 +117,11 @@
           <h2 class="text-center mb-3 text-uppercase">User Login</h2>
           <center>
             <?php
-              $signupCheck = $_GET['login'];
-              if ($signupCheck == 'empty') {
+              if (isset($data)) {
                 echo "
                 <div class='wrongpwd-box flash-error'>
                 <center>
-                <p class='error' style='color: black;'>You did not fill in all the fields!</p>
-                </center>
-                </div>
-                ";
-              }
-              elseif ($signupCheck == 'wrongpwd') {
-                echo "
-                <div class='wrongpwd-box flash-error'>
-                <center>
-                <p class='error' style='color: black;'>You entered a wrong password!</p>
-                </center>
-                </div>
-                ";
-              }
-              elseif ($signupCheck == 'nouser') {
-                echo "
-                <div class='wrongpwd-box flash-error'>
-                <center>
-                <h6 class='error' style='color: black;font-size:15px;'>User does not exist. Create a new user.</h6>
+                <p class='error' style='color: black;'>$data</p>
                 </center>
                 </div>
                 ";
@@ -160,13 +137,6 @@
             <div class="form-group">
               <input id="form_password" type="password" name="pwd" class="form-control" placeholder="Mot de passe" required="required">
               <div class="help-block with-errors"></div>
-            </div>
-            <div class="form-group mt-4 mb-5">
-              <div class="remember-checkbox d-flex align-items-center justify-content-between">
-                <div class="checkbox">
-                </div>
-                 <a href="#">Forgot Password?</a>
-              </div>
             </div>
             <button style="background-color: #900C3F;" class="btn btn-primary btn-block" type="submit" name="login-submit">Login Now</button>
             <br>

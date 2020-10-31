@@ -33,6 +33,18 @@
       return $arrayResult;
     }
 
+    public function deleteDishes($id)
+    {
+      $stmt = $this->db->prepare("DELETE FROM dishes WHERE dishId=?");
+      $stmt->bind_param("s", $id);
+
+      if($stmt->execute()) {
+          return true;
+      } else {
+          return $stmt->error;
+      }
+    }
+
   }
 
 

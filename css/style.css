@@ -1502,3 +1502,14 @@ blockquote {
   color: white;
   flex: 0 0 120px;
 }
+
+.wrongpwd-box {
+  padding: 10px;
+  margin: 0 auto 15px;
+  font-size: 15px;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 5px;
+  background: #ffe3e6;
+  border-color: rgba(158, 28, 35, .2);
+}

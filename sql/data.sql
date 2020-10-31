@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS `dishes` (
   `dishAvailability` boolean NOT NULL,
   -- `today_special` boolean not null
   -- `dayAvailable` array not null
-  FOREIGN KEY(dishCategory) REFERENCES categories(catId)
+  FOREIGN KEY(dishCategory) REFERENCES categories(catId) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `categories` (

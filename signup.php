@@ -19,6 +19,7 @@ if ($user->isLoggedIn())
 $errors = array();
 
 //When register button is pressed, register
+$data;
 if (isset($_POST['signup-submit']))
 {
     $uname = $_POST['firstname'] ;
@@ -30,14 +31,17 @@ if (isset($_POST['signup-submit']))
     if ($validate->usernameValidate($uname) != null)
     {
         $errors[] = $validate->usernameValidate($uname);
+        $data = $validate->usernameValidate($uname);
     }
     if ($validate->emailValidate($email) != null)
     {
         $errors[] = $validate->emailValidate($email);
+        $data = $validate->emailValidate($email);
     }
     if ($validate->passwordValidate($pass, $pass2) != null)
     {
         $errors[] = $validate->passwordValidate($pass, $pass2);
+        $data = $validate->passwordValidate($pass, $pass2);
     }
 
     //If no validation errors register input, else display errors
@@ -49,14 +53,14 @@ if (isset($_POST['signup-submit']))
         }
         else
         {
-            echo 'Error registering. please try again.';
+          $data = 'Error registering. please try again.';
         }
     }
     else
     {
         foreach ($errors as $error)
         {
-            printf ($error . "<br/>");
+            // printf ($error . "<br/>");
         }
     }
 }
@@ -76,9 +80,6 @@ if (isset($_POST['signup-submit']))
 
 	<!-- Site Metas -->
 	<title>Sign Up | Canteen Management System</title>
-	<meta name="keywords" content="">
-	<meta name="description" content="">
-	<meta name="author" content="">
 
 	<!-- Site Icons -->
 	<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
@@ -139,55 +140,18 @@ if (isset($_POST['signup-submit']))
       <div class="col-lg-8 col-md-12">
         <div class="mb-6">
           <h2>New User</h2>
+          <br>
           <center>
             <?php
-            $signupCheck = $_GET['signup'];
-            if ($signupCheck == 'empty') {
-              echo "
-              <div class='wrongpwd-box flash-error'>
-              <center>
-                <p class='error' style='color: black;'>You did not fill in all the fields!</p>
-              </center>
-              </div>
-              ";
-            }
-            elseif ($signupCheck == 'passwordnotmatching') {
-              echo "
-              <div class='wrongpwd-box flash-error'>
-              <center>
-                <p class='error' style='color: black;'>Password not matching!</p>
-              </center>
-              </div>
-              ";
-            }
-            elseif ($signupCheck == 'emailexist') {
-              echo "
-              <div class='wrongpwd-box flash-error'>
-              <center>
-                <p class='error' style='color: black;'>The email already exist!</p>
-              </center>
-              </div>
-              ";
-            }
-            elseif ($signupCheck == 'invalidemail') {
-              echo "
-              <div class='wrongpwd-box flash-error'>
-              <center>
-                <p class='error' style='color: black;'>Invalid email!</p>
-              </center>
-              </div>
-              ";
-            }
-            elseif ($signupCheck == 'success') {
-              echo "
-              //color is green
-              <div class='wrongpwd-box flash-error'>
-              <center>
-                <p class='error' style='color: black;'>Sign up success!</p>
-              </center>
-              </div>
-              ";
-          }
+              if (isset($data)) {
+                echo "
+                <div class='wrongpwd-box flash-error'>
+                  <center>
+                    <p class='error' style='color: black;'>$data</p>
+                  </center>
+                </div>
+                ";
+              }
             ?>
           </center>
         </div>

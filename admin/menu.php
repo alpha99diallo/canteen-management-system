@@ -30,9 +30,6 @@
 
 	<!-- Site Metas -->
 	<title>Menu | Canteen Management System</title>
-	<meta name="keywords" content="">
-	<meta name="description" content="">
-	<meta name="author" content="">
 
 	<!-- Site Icons -->
 	<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
@@ -107,7 +104,7 @@
                         <td>'.$dishPrice.'</td>
                         <td>'.$dishAvailable.'</td>
                         <td>'.$dateAdded.'</td>
-                        <td><a href="">delete</a></td>
+                        <td><a href="includes/deleteItems.inc.php?id='.$id.'">delete</a></td>
                       </tr>
                     ';
                   }
