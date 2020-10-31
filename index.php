@@ -27,9 +27,6 @@
 
 	<!-- Site Metas -->
 	<title>Home | Canteen Management System</title>
-	<meta name="keywords" content="">
-	<meta name="description" content="">
-	<meta name="author" content="">
 
 	<!-- Site Icons -->
 	<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
@@ -221,9 +218,21 @@
 	</div>
 	<!-- End Menu -->
 
+	<div class="row">
+		<div class='wrongpwd-box flash-error' style="width: 30%;background: #4fc879; border-color: #4a934a;">
+			<center>
+				<p class='error' style='color: black;'>
+					Your order has been placed successfully!<br>
+					order Id: #1
+				</p>
+			</center>
+		</div>
+	</div>
+
+
 	<div id="section-cart" class="row">
 		<div class="col-lg-12">
-			<div class="container h-100 d-flex justify-content-center align-items-center" style="left:50%;">
+			<div class="container h-100 d-flex justify-content-center align-items-center" >
 				<div class="card text-center" style="width: 40%;">
 					<div class="card-title">
 						<h3 class="card-header">Cart</h3>
