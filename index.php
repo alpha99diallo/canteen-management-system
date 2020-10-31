@@ -204,7 +204,7 @@
 	</div>
 	<!-- End Menu -->
 
-	<div class="row">
+	<div id="section-cart" class="row">
 		<div class="col-lg-12">
 			<div class="container h-100 d-flex justify-content-center align-items-center" style="left:50%;">
 				<div class="card text-center" style="width: 40%;">

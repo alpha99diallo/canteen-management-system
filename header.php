@@ -22,6 +22,9 @@
           <li class="nav-item"><a class="nav-link" href="#section-about">About</a></li>
           <li class="nav-item"><a class="nav-link" href="#section-menu">Menu</a></li>
           <li class="nav-item"><a class="nav-link" href="#section-contact">Contact</a></li>
+          <li class="nav-item">
+            <a class="nav-link" href="#section-cart">Cart</a>
+          </li>
           <?php
               if(!isset($_SESSION['userLoginStatus'])) {
                 echo '
