@@ -2,7 +2,7 @@
 
 session_start();
 
-class Cart implements Countable, Iterator{
+class Cart implements Countable{
 	// The items in the shopping cart
 		private $cart_item = array();
 
@@ -45,15 +45,25 @@ class Cart implements Countable, Iterator{
       // redirect to product list and tell the user it was added to cart
       $this->updateItem($id);
 
-      header("Location: ".$_SERVER['HTTP_REFERER']."?action=exists&id='$id'");
+      header("Location: ".$_SERVER['HTTP_REFERER']."?action=exists&id='$id'#section-menu");
     }
     // else, add the item to the array
     else{
     $_SESSION['cart'][$id] = $cart_item;
 
     // redirect to product list and tell the user it was added to cart
-      header('Location: '.$_SERVER["HTTP_REFERER"].'?action=added');
+      header('Location: '.$_SERVER["HTTP_REFERER"].'?action=added#section-menu');
     }
+	}
+
+	public function updateItem($id){
+
+		// Throw an exception if there is no id
+		if (!$id) throw new Exception ('The cart requires item with unique ID values');
+
+		foreach ($_SESSION["cart"] as $product) {
+			$_SESSION["cart"][$id]['quantity']++;
+		}
 	}
 
 	public function removeItem($id){
@@ -62,87 +72,14 @@ class Cart implements Countable, Iterator{
       unset($_SESSION['cart'][$id]);
 	}
 
-	public function updateItem($id){
+	public function count(){
+		$count = 0;
 
-    $cart_item = $_SESSION['cart'][$id];
+		foreach ($this->items as $item) {
+			$count += $item['qty'];
+		}
 
-		// Throw an exception if there is no id
-			if (!$id) throw new Exception ('The cart requires item with unique ID values');
-
-		// Delete or update item quantity
-			if (1 === 0) {
-				$this->deleteItem($item);
-			} else {
-        echo $cart_item;
-				$this->$cart_item[$id]['quantity'] = (int)$cart_item[$id]['quantity'] + 1;
-        $_SESSION['cart'][$id] = $cart_item;
-			}
+		return $count;
 	}
-
-	public function deleteItem(Dish $item){
-		// Get the item id
-			$id = $item->getId();
-
-		// Throw an exception if there is no id
-			if (!$id) throw new Exception ('The cart requires item with unique ID values');
-
-		// Remove item from shopping cart
-			if (isset($this->items[$id])) {
-				unset($this->items[$id]);
-			}
-
-			$index = array_search($id, $this->ids);
-			unset($this->ids[$index]);
-			$this->ids = array_values($this->ids);
-	}
-
-	public function getTotal(){
-		$total = 0;
-
-		foreach ($this->items as $id) {
-						$subtotal = $id['qty'] * ($id['item']->getPrice());
-						$total += $subtotal;
-					}
-
-		return $total;
-	}
-
-	// $items array is protected so we implement Countable and Iterable interfaces using the following methods
-		// Countable interface: Function to count number of items in our cart
-			public function count(){
-				$count = 0;
-
-				foreach ($this->items as $item) {
-					$count += $item['qty'];
-				}
-
-				return $count;
-			}
-
-		// Iterator interface: Function to return the key of the current element
-			public function key(){
-				return $this->position;
-			}
-
-		// Iterator interface: Function to move forward to the next element
-			public function next(){
-				$this->position++;
-			}
-
-		// Iterator interface: Function to rewind the iterator to the first element
-			public function rewind(){
-				$this->position = 0;
-			}
-
-		// Iterator interface: Function to check if the current position is valid
-			public function valid(){
-				return (isset($this->ids[$this->position]));
-			}
-
-		// Iterable interface: Function to return the current item
-			public function current(){
-				$index = $this->ids[$this->position];
-				return $this->items[$index];
-			}
 
 }

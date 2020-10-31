@@ -3,14 +3,13 @@
 	require_once('classes/categories.class.php');
 	require_once('classes/dishes.class.php');
 
-	// error_reporting(E_ALL & ~E_NOTICE);
-
 	// creation of object
 	$categories = new Categories($conn);
 	$dishes = new Dishes($conn);
 
 	$dataFetched = $categories->fetchCategories();
 	$fetchingAllDishes = $dishes->fetchAllDishes();
+
 	$total=0;
 
 
@@ -111,6 +110,7 @@
 	<!-- Start Menu -->
 	<div id="section-menu" class="menu-box">
 		<div class="container">
+
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="heading-title text-center">
@@ -135,7 +135,7 @@
 					</div>
 				</div>
 
-				<div class="col-8">
+				<div class="col-10">
 					<div class="tab-content" id="v-pills-tabContent">
 						<div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
 							<div class="row">
@@ -180,7 +180,7 @@
 												<p>'.$fetchDishesPerCategory[$j]['dishDescription'].'</p>
 												<div class="remember-checkbox d-flex align-items-center justify-content-between">
 													<h5> $'.$fetchDishesPerCategory[$j]['dishPrice'].'</h5>
-													<a class="btn-cart btn btn-primary btn-animated mx-3" style="background-color:#900C3F;color: white;" name="addcart">
+													<a class="btn-cart btn btn-primary btn-animated mx-3" style="background-color:#900C3F;color: white;" href="includes/addToCart.inc.php?id='.$fetchDishesPerCategory[$j]['dishId'].'&quantity=1&name='.$fetchDishesPerCategory[$j]['dishName'].'&price='.$fetchDishesPerCategory[$j]['dishPrice'].'">
 														<i class="fa fa-shopping-cart"></i>
 													</a>
 												</div>
@@ -198,25 +198,37 @@
 					</div>
 				</div>
 
-				<div class="col-lg-2">
-					<div class="card text-center" style="width: 100%;">
-						<div class="card-title">
-							<h3 class="card-header">Cart</h3>
-						</div>
-						<div class="">
-							<table>
-								<thead>
-									<tr>
-										<th>Product</th>
-										<th>Q</th>
-										<th>Price(rs)</th>
-									</tr>
-								</thead>
-								<tbody>
-									<?php
+			</div>
+
+		</div>
+	</div>
+	<!-- End Menu -->
+
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="container h-100 d-flex justify-content-center align-items-center" style="left:50%;">
+				<div class="card text-center" style="width: 40%;">
+					<div class="card-title">
+						<h3 class="card-header">Cart</h3>
+					</div>
+					<div class="">
+						<table class="table">
+							<thead>
+								<tr>
+									<th>Product</th>
+									<th>Q</th>
+									<th>Price(rs)</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<?php
+								if(!isset($_SESSION["cart"])) {
+									echo '<tr>Your cart is empty!</tr>';
+								} else {
 									foreach($_SESSION["cart"] as $product){
 										$dishQuantity=$product['quantity'];
-                    $dishId = $product['pid'];
+										$dishId = $product['pid'];
 										$dishName = $product['name'];
 										$dishPrice = $product['price'];
 										$total += ((float)$dishQuantity*(float)$dishPrice);
@@ -225,28 +237,26 @@
 										<tr>
 											<td>'.$dishName.'</td>
 											<td>'.$dishQuantity.'</td>
-											<td> '.$dishPrice.'</td>
+											<td>'.$dishPrice.'</td>
+											<td><a href="includes/deleteCart.inc.php?id='.$dishId.'">delete</a></td>
 										</tr>
 										';
 									}
-									 ?>
-								</tbody>
-								<tfoot>
-									<tr>
-										<th>Total(rs): <?php echo $total; ?></th>
-									</tr>
-								</tfoot>
-							</table>
-							<a style="background-color: #900C3F;color: white;" href="includes/deleteCart.inc.php?id=4" class="btn btn-primary btn-block">Order</a>
-						</div>
+								}
+								 ?>
+							</tbody>
+							<tfoot>
+								<tr>
+									<th>Total(rs): <?php echo $total; ?></th>
+								</tr>
+							</tfoot>
+						</table>
+						<a style="background-color: #900C3F;color: white;" data-toggle="modal" href="#exampleModalCenter" class="btn btn-primary btn-block">Order</a>
 					</div>
 				</div>
-
 			</div>
-
 		</div>
 	</div>
-	<!-- End Menu -->
 
 	<!-- Start Contact info -->
 	<div id="section-contact" class="contact-imfo-box">
@@ -277,6 +287,7 @@
 
 	<!-- Start Footer -->
 	<?php require 'footer.php' ?>
+	<?php require 'order.php'; ?>
 	<!-- End Footer -->
 
 </body>

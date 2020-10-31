@@ -23,7 +23,6 @@
               </span>
               </a>
               <div class='dropdown-menu' aria-labelledby='dropdown-a'>
-                <a class='dropdown-item' href='orders.php'>Orders</a>
                 <a class='dropdown-item' href='includes/logout.inc.php?logout'>Log out</a>
               </div>
             </li>

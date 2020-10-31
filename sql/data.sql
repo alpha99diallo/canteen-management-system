@@ -78,3 +78,45 @@ CREATE TABLE IF NOT EXISTS `cart` (
   FOREIGN KEY(userId) REFERENCES users(userId),
   FOREIGN KEY(dishId) REFERENCES dishes(dishId)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `admin` (
+  `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `adminName` varchar(125) NOT NULL,
+  `adminEmail` varchar(100) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `type` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+INSERT INTO `admin` (
+          adminName,
+          adminEmail,
+          password,
+          type
+        ) VALUES(
+          'Alpha',
+          'aadiallo1999@yahoo.com',
+          'alphadiallo',
+          'admin'
+      );
+
+CREATE TABLE `orders` (
+    `orderId` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `orderCustomer` varchar(125) NOT NULL,
+    `orderDate` date NOT NULL,
+    `orderAmount` varchar(100) NOT NULL,
+    `orderStatus` varchar(20) NOT NULL,
+    `orderPayment` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+CREATE TABLE `order_item` (
+  `order_item_id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `dishId` int(11) NOT NULL,
+	`orderId` int(11) not null,
+	`order_item_status_code` varchar(100) not null,
+	`order_item_quantity` int(11) not null,
+  `order_item_price` varchar(50) NOT NULL,
+  FOREIGN KEY(dishId) REFERENCES dishes(dishId),
+  FOREIGN KEY(orderId) REFERENCES orders(orderId)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
