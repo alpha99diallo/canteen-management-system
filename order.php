@@ -37,7 +37,7 @@
               else {
                 echo '
                 <h3 class="mb-4">1. Payment</h3>
-                <input type="text" value="'.$_SESSION['userName'].'" name="orderCustomer" hidden>
+                <input type="text" value="'.$_SESSION['userId'].'" name="orderCustomer" hidden>
                 <div class="form-group">
                   <div class="custom-control custom-radio">
                     <input type="radio" id="customRadio2" name="customRadio" value="Credit/Debit Card" class="custom-control-input" checked>

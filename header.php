@@ -1,7 +1,5 @@
 <?php
   session_start();
-  // unset($_SESSION['cart']);
-
  ?>
 
 <header id="pb-navbar" class="top-navbar">
@@ -21,7 +19,6 @@
         <ul class="navbar-nav ml-auto">
           <li class="nav-item"><a class="nav-link" href="#section-about">About</a></li>
           <li class="nav-item"><a class="nav-link" href="#section-menu">Menu</a></li>
-          <li class="nav-item"><a class="nav-link" href="#section-contact">Contact</a></li>
           <li class="nav-item">
             <a class="nav-link" href="#section-cart">Cart</a>
           </li>
@@ -39,7 +36,7 @@
                     </span>
                     </a>
                     <div class='dropdown-menu' aria-labelledby='dropdown-a'>
-      								<a class='dropdown-item' href='orders.php'>Orders</a>
+      								<a class='dropdown-item' href='myOrders.php'>Orders</a>
       								<a class='dropdown-item' href='includes/logout.inc.php?logout'>Log out</a>
       							</div>
                   </li>

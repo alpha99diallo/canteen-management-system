@@ -14,9 +14,9 @@
     foreach($_SESSION["cart"] as $product){
       $total += ((float)$product['quantity']*(float)$product['price']);
     }
-    $order->createOrder($customerName,$date,strval($total),'processing',$orderPayment);
+    $orderId = $order->createOrder($customerName,$date,strval($total),'processing',$orderPayment);
     unset($_SESSION['cart']);
-    header('Location: index.php?order=success');
+    header('Location: index.php?order=success&orderId='.$orderId.'#section-cart');
   }
 
  ?>

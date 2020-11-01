@@ -119,11 +119,20 @@
             <?php
               if (isset($data)) {
                 echo "
-                <div class='wrongpwd-box flash-error'>
-                <center>
-                <p class='error' style='color: black;'>$data</p>
-                </center>
-                </div>
+                  <div class='wrongpwd-box flash-error'>
+                    <center>
+                    <p class='error' style='color: black;'>$data</p>
+                    </center>
+                  </div>
+                ";
+              }
+              elseif (isset($_GET['signup']) && ($_GET['signup'] == 'success')) {
+                echo "
+                  <div class='wrongpwd-box flash-error' style='background: #4fc879; border-color: #4a934a;'>
+                    <center>
+                    <p class='error' style='color: black;'>Successfully Joined!</p>
+                    </center>
+                  </div>
                 ";
               }
             ?>

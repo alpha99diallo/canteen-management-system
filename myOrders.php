@@ -1,4 +1,23 @@
-<?php session_start(); ?>
+<?php
+	require_once('includes/dbh.inc.php');
+	require_once('classes/order.class.php');
+
+	if(!isset($_SESSION['userLoginStatus'])) {
+    header('Location: index.php');
+  }
+
+	$order = new Order($conn);
+
+	$listOrders = $order->displayMyOrders($_SESSION['userId']);
+
+	if(isset($listOrders)) {
+		$totalOrders = count($listOrders);
+	}
+	else {
+		$totalOrders = 0;
+	}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <!-- Basic -->
@@ -12,9 +31,6 @@
 
 	<!-- Site Metas -->
 	<title>My Orders | Canteen Management System</title>
-	<meta name="keywords" content="">
-	<meta name="description" content="">
-	<meta name="author" content="">
 
 	<!-- Site Icons -->
 	<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
@@ -62,7 +78,7 @@
                       </span>
                       </a>
                       <div class='dropdown-menu' aria-labelledby='dropdown-a'>
-        								<a class='dropdown-item' href='orders.php'>Orders</a>
+        								<a class='dropdown-item' href='myOrders.php'>Orders</a>
         								<a class='dropdown-item' href='includes/logout.inc.php?logout'>Log out</a>
         							</div>
                     </li>
@@ -80,7 +96,7 @@
 		<div class="container text-center">
 			<div class="row">
 				<div class="col-lg-12">
-					<h1>My Orders</h1>
+					<h1>My Orders(<?php echo $totalOrders; ?>)</h1>
 				</div>
 			</div>
 		</div>
@@ -96,16 +112,38 @@
                   <thead>
                     <tr>
                       <th scope="col">#</th>
-                      <th scope="col">Dish</th>
-                      <th scope="col">Description</th>
-                      <th scope="col">Price</th>
+											<th scope="col">#orderId</th>
+                      <th scope="col">Date</th>
+                      <th scope="col">Price(Rs)</th>
                       <th scope="col">Payment</th>
                       <th scope="col">Status</th>
+											<th scope="col">Action</th>
                     </tr>
                   </thead>
                   <tbody>
-
-
+										<?php
+											if(isset($listOrders)) {
+												for($i = 0; $i < count($listOrders); $i++) {
+			                    $id = $i + 1;
+													$orderId = $listOrders[$i]["orderId"];
+			                    $date = $listOrders[$i]["orderDate"];
+			                    $amount = $listOrders[$i]["orderAmount"];
+			                    $status = $listOrders[$i]["orderStatus"];
+			                    $payment = $listOrders[$i]["orderPayment"];
+			                    echo '
+			                      <tr>
+			                        <td>'.$id.'</td>
+															<td>#'.$orderId.'</td>
+			                        <td>'.$date.'</td>
+			                        <td>'.$amount.'</td>
+			                        <td>'.$payment.'</td>
+			                        <td>'.$status.'</td>
+			                        <td><a href="">details</a></td>
+			                      </tr>
+			                    ';
+			                  }
+											}
+		                 ?>
                   </tbody>
               </table>
             </div>

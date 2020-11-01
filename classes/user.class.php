@@ -30,18 +30,19 @@ Class User {
     public function login($user, $pass) {
 
         //Query database for info based on username or email
-        $stmt = $this->db->prepare("SELECT userName, userEmail, userPassword FROM users WHERE userName = ? OR userEmail = ?");
+        $stmt = $this->db->prepare("SELECT userId, userName, userEmail, userPassword FROM users WHERE userName = ? OR userEmail = ?");
         $stmt->bind_param("ss", $user, $user);
         $stmt->execute();
         $stmt->store_result();
 
         //If info is found get info, else return error
         if ($stmt->num_rows == 1) {
-            $stmt->bind_result($uname, $email, $passHash);
+            $stmt->bind_result($uId, $uname, $email, $passHash);
             $result = $stmt->fetch();
 
             //if password matches setup session, else return error
             if (password_verify($pass, $passHash)) {
+                $_SESSION['userId'] = $uId;
                 $_SESSION['userName'] = $uname;
                 $_SESSION['userEmail'] = $email;
                 $_SESSION['userLoginStatus'] = 1;

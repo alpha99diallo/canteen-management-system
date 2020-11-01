@@ -63,23 +63,48 @@ INSERT INTO `dishes` (
           'Margarita',
           'Very amazing margarita',
           'images/img-01.jpg',
-          '2.99',
+          '100',
           1,
           '2020:10:20',
           1
       );
 
+INSERT INTO `dishes` (
+          dishName,
+                dishDescription,
+                dishImage,
+                dishPrice,
+                dishCategory,
+                dishDateAdded,
+                dishAvailability
+              ) VALUES(
+                'Tiramissou',
+                'Very amazing Tiramissou',
+                'images/img-03.jpg',
+                '199',
+                1,
+                '2020:10:20',
+                1
+            );
 
-CREATE TABLE IF NOT EXISTS `cart` (
-  `cartId` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `userId` int(11) NOT NULL,
-  `dishId` int(11) NOT NULL,
-  `cartQuantity` int(11) NOT NULL,
-  `cartDate` date NOT NULL,
-  `cartExpired` boolean NOT NULL,
-  FOREIGN KEY(userId) REFERENCES users(userId),
-  FOREIGN KEY(dishId) REFERENCES dishes(dishId)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO `dishes` (
+              dishName,
+              dishDescription,
+                      dishImage,
+                      dishPrice,
+                      dishCategory,
+                      dishDateAdded,
+                      dishAvailability
+                    ) VALUES(
+                      'Frites Poulet',
+                      'Very amazing Frites poulet',
+                      'images/img-01.jpg',
+                      '299',
+                      1,
+                      '2020:10:20',
+                      1
+                  );
 
 
 CREATE TABLE `admin` (

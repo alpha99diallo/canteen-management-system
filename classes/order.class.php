@@ -28,7 +28,7 @@
           $dishPrice = $product['price'];
           $stmt2->bind_param("sssss", $dishId, $order_id, $orderStatus, $dishQuantity,$dishPrice);
           if($stmt2->execute()) {
-            return true;
+            return $order_id;
           } else {
             return $stmt->error;
           }
@@ -38,14 +38,40 @@
       }
     }
 
-    public function updateOrder()
+    public function cancelOrder($id)
     {
-      // TODO: update order
-    }
 
-    public function deleteOrder()
-    {
-      // TODO: delete order
+      //Query database for info based on username or email
+      $stmt = $this->db->prepare("SELECT orderStatus FROM orders WHERE orderId = ? ");
+      $stmt->bind_param("s", $id);
+      $stmt->execute();
+      $stmt->store_result();
+
+      if ($stmt->num_rows == 1) {
+        $stmt->bind_result($orderStatus);
+        $result = $stmt->fetch();
+
+        if ($orderStatus !== 'completed') {
+          // if the status != completed then cancel it
+          $stmt = $this->db->prepare("UPDATE orders SET orderStatus='cancel' WHERE orderId=?");
+          $stmt->bind_param("s", $id);
+
+          if($stmt->execute()) {
+              return 'cancel';
+          } else {
+              return $stmt->error;
+          }
+        }
+        else {
+           return 'completed';
+        }
+
+      }
+      else {
+        return 'empty';
+      }
+
+
     }
 
     public function displayOrders()
@@ -57,6 +83,23 @@
         $array[] = $row;
       }
       return $array;
+    }
+
+    public function displayMyOrders($id)
+    {
+      $arrayResult = array();
+      $stmt = "SELECT * FROM orders WHERE orderCustomer = '$id';";
+      $result = mysqli_query($this->db,$stmt);
+      if(mysqli_num_rows($result)) {
+        while ($row = mysqli_fetch_assoc($result)) {
+          $array[] = $row;
+        }
+        return $array;
+      }
+      else {
+        return null;
+      }
+
     }
 
 

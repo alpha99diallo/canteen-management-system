@@ -49,7 +49,7 @@ if (isset($_POST['signup-submit']))
     {
         if($user->register($uname, $email, $pass) === true)
         {
-            $user->redirect('signin.php?joined');
+            $user->redirect('signin.php?signup=success');
         }
         else
         {

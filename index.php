@@ -217,17 +217,53 @@
 		</div>
 	</div>
 	<!-- End Menu -->
-
-	<div class="row">
-		<div class='wrongpwd-box flash-error' style="width: 30%;background: #4fc879; border-color: #4a934a;">
-			<center>
-				<p class='error' style='color: black;'>
-					Your order has been placed successfully!<br>
-					order Id: #1
-				</p>
-			</center>
-		</div>
-	</div>
+	<?php
+		if(isset($_GET['order'])) {
+			if($_GET['order'] === 'success') {
+				$orderId = $_GET['orderId'];
+				echo '
+				<div class="row">
+					<div class="wrongpwd-box flash-error" style="width: 30%;background: #4fc879; border-color: #4a934a;">
+						<center>
+							<p class="error" style="color: black;">
+								Your order has been placed successfully!<br>
+								Order No: '.$orderId.'<br>
+								<a href="includes/cancelOrder.inc.php?id='.$orderId.'" style="color: red;">Cancel Order</a>
+							</p>
+						</center>
+					</div>
+				</div>
+				';
+			}
+			elseif ($_GET['order'] === 'cancel') {
+				echo '
+				<div class="row">
+					<div class="wrongpwd-box flash-error" style="width: 30%;">
+						<center>
+							<p class="error" style="color: black;">
+								Your order has been Cancelled!<br>
+							</p>
+						</center>
+					</div>
+				</div>
+				';
+			}
+			elseif ($_GET['order'] === 'completed') {
+				echo '
+				<div class="row">
+					<div class="wrongpwd-box flash-error" style="background: #4fc879; border-color: #4a934a; width: 30%;">
+						<center>
+							<p class="error" style="color: black;">
+								Cannot cancel the order<br>
+								Your order has been Completed!<br>
+							</p>
+						</center>
+					</div>
+				</div>
+				';
+			}
+		}
+	 ?>
 
 
 	<div id="section-cart" class="row">
@@ -283,33 +319,6 @@
 			</div>
 		</div>
 	</div>
-
-	<!-- Start Contact info -->
-	<div id="section-contact" class="contact-imfo-box">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-4 arrow-right">
-					<i class="fa fa-volume-control-phone" style="color: #900C3F;"></i>
-					<div class="overflow-hidden">
-						<h4>Help Line</h4>
-						<p class="lead">
-							+91 9886837714
-						</p>
-					</div>
-				</div>
-				<div class="col-md-4">
-					<i class="fa fa-envelope" style="color: #900C3F;"></i>
-					<div class="overflow-hidden">
-						<h4>Email</h4>
-						<p class="lead">
-							alpha2779@gmail.com
-						</p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- End Contact info -->
 
 	<!-- Start Footer -->
 	<?php require 'footer.php' ?>
