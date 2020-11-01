@@ -46,7 +46,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<!-- Site Metas -->
-	<title>Sign In | Canteen Management System</title>
+	<title>Sign In | Alpha's Canteen</title>
 
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="css/bootstrap.min.css">

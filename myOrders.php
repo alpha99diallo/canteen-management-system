@@ -30,7 +30,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<!-- Site Metas -->
-	<title>My Orders | Canteen Management System</title>
+	<title>My Orders | Alpha's Canteen</title>
 
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="css/bootstrap.min.css">
@@ -47,10 +47,10 @@
       <div class="container">
         <a class="navbar-brand" href="index.html">
           <span class="img-fluid" style="padding-right:20px">
-                    <a href="index.php">
-                      <span style="font-family: snellroundhandw01-scrip,cursive;color: #900C3F;font-size: 30px;">Alpha's</span><span style="font-family: snellroundhandw01-scrip,cursive;font-size: 30px;">Canteen</span>
-                    </a>
-                </span>
+            <a href="index.php">
+              <span style="font-family: snellroundhandw01-scrip,cursive;color: #900C3F;font-size: 30px;">Alpha's</span><span style="font-family: snellroundhandw01-scrip,cursive;font-size: 30px;">Canteen</span>
+            </a>
+          </span>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-rs-food" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>

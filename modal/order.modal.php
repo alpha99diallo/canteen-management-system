@@ -19,13 +19,13 @@
                 <h3 class="mb-4">2. Payment</h3>
                 <div class="form-group">
                   <div class="custom-control custom-radio">
-                    <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input">
-                    <label class="custom-control-label" for="customRadio2">Credit/Debit Card</label>
+                  <input type="radio" id="customRadio2" name="customRadio" value="Credit/Debit Card" class="custom-control-input" checked>
+                  <label class="custom-control-label" for="customRadio2">Credit/Debit Card</label>
                   </div>
                 </div>
                 <div class="form-group">
                   <div class="custom-control custom-radio">
-                    <input type="radio" id="customRadio3" name="customRadio" class="custom-control-input">
+                    <input type="radio" id="customRadio3" name="customRadio"  value="Cash"  class="custom-control-input">
                     <label class="custom-control-label" for="customRadio3">Cash</label>
                   </div>
                 </div>

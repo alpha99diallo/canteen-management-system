@@ -10,6 +10,13 @@
 
   $listOrders = $order->displayOrders();
 
+  if(isset($listOrders)) {
+		$totalOrders = count($listOrders);
+	}
+	else {
+		$totalOrders = 0;
+	}
+
   // TODO: implement details for orders using a modal
  ?>
 
@@ -44,7 +51,7 @@
 		<div class="container text-center">
 			<div class="row">
 				<div class="col-lg-12">
-					<h1>Orders(<?php echo count($listOrders); ?>)</h1>
+					<h1>Orders(<?php echo $totalOrders; ?>)</h1>
 				</div>
 			</div>
 		</div>

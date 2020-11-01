@@ -12,6 +12,13 @@
 
   $listUsers = $user->displayUsers();
 
+  if(isset($listUsers)) {
+		$totalUsers = count($listUsers);
+	}
+	else {
+		$totalUsers = 0;
+	}
+
  ?>
 
 
@@ -27,7 +34,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<!-- Site Metas -->
-	<title>Customer | Canteen Management System</title>
+	<title>Customer | Admin Panel</title>
 
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="../css/bootstrap.min.css">
@@ -45,7 +52,7 @@
 		<div class="container text-center">
 			<div class="row">
 				<div class="col-lg-12">
-					<h1>Customer(<?php echo count($listUsers); ?>)</h1>
+					<h1>Customer(<?php echo $totalUsers; ?>)</h1>
 				</div>
 			</div>
 		</div>
