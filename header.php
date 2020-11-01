@@ -17,11 +17,27 @@
       </button>
       <div class="collapse navbar-collapse" id="navbars-rs-food">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item"><a class="nav-link" href="#section-about">About</a></li>
-          <li class="nav-item"><a class="nav-link" href="#section-menu">Menu</a></li>
-          <li class="nav-item">
-            <a class="nav-link" href="#section-cart">Cart</a>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="dropdown-a" data-toggle="dropdown"href="#">Menu</a>
+            <div class='dropdown-menu' aria-labelledby='dropdown-a'>
+              <a class='dropdown-item' href='menu.php?day=Mon'>Monday</a>
+              <a class='dropdown-item' href='menu.php?day=Tues'>Tuesday</a>
+              <a class='dropdown-item' href='menu.php?day=Wed'>Wednesday</a>
+              <a class='dropdown-item' href='menu.php?day=Thu'>Thursday</a>
+              <a class='dropdown-item' href='menu.php?day=Fri'>Friday</a>
+              <a class='dropdown-item' href='menu.php?day=Sat'>Saturday</a>
+              <a class='dropdown-item' href='menu.php?day=Sun'>Sunday</a>
+            </div>
           </li>
+          <?php
+            if ($_SERVER["REQUEST_URI"] != '/canteen-management-system/index.php') {
+              echo '
+                <li class="nav-item">
+                  <a class="nav-link" href="#section-cart">Cart</a>
+                </li>
+              ';
+            }
+           ?>
           <?php
               if(!isset($_SESSION['userLoginStatus'])) {
                 echo '

@@ -9,7 +9,7 @@
       </div>
       <div class="modal-body">
         <div class="checkout-form box-shadow white-bg">
-          <form class="cart-detail" method="post" action="place-order.php">
+          <form class="cart-detail" method="post" action="includes/place-order.inc.php">
             <?php
               if(!isset($_SESSION['userLoginStatus'])) {
                 echo '
@@ -30,7 +30,9 @@
                   </div>
                 </div>
                 <div class="modal-footer">
-                  <button type="submit" style="background-color:#900C3F;" name="place-order" class="btn btn-primary">Place Order</button>
+                  <button type="submit" style="background-color:#900C3F;" name="place-order" class="btn btn-primary">
+                  Place Order
+                  </button>
                 </div>
                 ';
               }

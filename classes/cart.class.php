@@ -52,7 +52,7 @@ class Cart implements Countable{
     $_SESSION['cart'][$id] = $cart_item;
 
     // redirect to product list and tell the user it was added to cart
-      header('Location: '.$_SERVER["HTTP_REFERER"].'?action=added#section-menu');
+      header('Location: '.$_SERVER["HTTP_REFERER"].'&action=added#section-menu');
     }
 	}
 

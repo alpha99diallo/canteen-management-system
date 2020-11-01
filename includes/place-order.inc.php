@@ -1,7 +1,7 @@
 <?php
   session_start();
-  require_once('includes/dbh.inc.php');
-  require_once("classes/order.class.php");
+  require_once('../includes/dbh.inc.php');
+  require_once("../classes/order.class.php");
 
   $order = new Order($conn);
 
@@ -16,7 +16,7 @@
     }
     $orderId = $order->createOrder($customerName,$date,strval($total),'processing',$orderPayment);
     unset($_SESSION['cart']);
-    header('Location: index.php?order=success&orderId='.$orderId.'#section-cart');
+    header('Location: '.$_SERVER['HTTP_REFERER'].'&order=success&orderId='.$orderId.'#section-cart');
   }
 
  ?>

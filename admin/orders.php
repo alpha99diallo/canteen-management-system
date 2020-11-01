@@ -59,7 +59,7 @@
               <thead>
                 <tr>
                   <th scope="col">#id</th>
-                  <th scope="col">Customer</th>
+                  <th scope="col">Customer/CustomerId</th>
                   <th scope="col">Date</th>
                   <th scope="col">Price(Rs)</th>
                   <th scope="col">Status</th>

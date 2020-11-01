@@ -22,8 +22,8 @@ CREATE TABLE IF NOT EXISTS `dishes` (
   `dishCategory` int(11) NOT NULL,
   `dishDateAdded` date NOT NULL,
   `dishAvailability` boolean NOT NULL,
-  -- `today_special` boolean not null
-  -- `dayAvailable` array not null
+  `today_special` boolean not null,
+  `dayAvailable` varchar(100) not null,
   FOREIGN KEY(dishCategory) REFERENCES categories(catId) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -58,16 +58,42 @@ INSERT INTO `dishes` (
           dishPrice,
           dishCategory,
           dishDateAdded,
-          dishAvailability
+          dishAvailability,
+          today_special,
+          dayAvailable
         ) VALUES(
           'Margarita',
           'Very amazing margarita',
           'images/img-01.jpg',
           '100',
-          1,
+          2,
           '2020:10:20',
-          1
+          1,
+          1,
+          'Mon,Tues,Fri'
       );
+
+INSERT INTO `dishes` (
+                dishName,
+                dishDescription,
+                dishImage,
+                dishPrice,
+                dishCategory,
+                dishDateAdded,
+                dishAvailability,
+                today_special,
+                dayAvailable
+              ) VALUES(
+                'Talipa',
+                'Very amazing talipa',
+                'images/img-02.jpg',
+                '100',
+                2,
+                '2020:10:20',
+                1,
+                1,
+                'Mon,Tues,Fri'
+            );
 
 INSERT INTO `dishes` (
           dishName,
@@ -76,15 +102,19 @@ INSERT INTO `dishes` (
                 dishPrice,
                 dishCategory,
                 dishDateAdded,
-                dishAvailability
+                dishAvailability,
+                today_special,
+                dayAvailable
               ) VALUES(
                 'Tiramissou',
                 'Very amazing Tiramissou',
-                'images/img-03.jpg',
+                'images/img-06.jpg',
                 '199',
-                1,
+                3,
                 '2020:10:20',
-                1
+                1,
+                0,
+                'Wed,Tues,Fri,Sat'
             );
 
 
@@ -95,15 +125,19 @@ INSERT INTO `dishes` (
                       dishPrice,
                       dishCategory,
                       dishDateAdded,
-                      dishAvailability
+                      dishAvailability,
+                      today_special,
+                      dayAvailable
                     ) VALUES(
                       'Frites Poulet',
                       'Very amazing Frites poulet',
-                      'images/img-01.jpg',
+                      'images/img-09.jpg',
                       '299',
                       1,
                       '2020:10:20',
-                      1
+                      1,
+                      0,
+                      'Thu,Tues,Fri,Sun'
                   );
 
 

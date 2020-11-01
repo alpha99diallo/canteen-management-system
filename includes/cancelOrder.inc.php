@@ -8,6 +8,6 @@
 
   $response = $order->cancelOrder($id);
 
-  header('Location: ../index.php?order='.$response.'#section-cart');
+  header('Location: '.$_SERVER['HTTP_REFERER'].'&order='.$response.'#section-cart');
 
  ?>

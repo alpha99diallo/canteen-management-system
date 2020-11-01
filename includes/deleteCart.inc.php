@@ -8,6 +8,6 @@
 
   $cart->removeItem($dish_id);
 
-  header('Location: ../index.php?deleted=success#section-menu');
+  header('Location: ../menu.php?deleted=success#section-cart');
 
 ?>
